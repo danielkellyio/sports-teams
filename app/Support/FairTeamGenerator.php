@@ -27,14 +27,14 @@ class FairTeamGenerator{
 
     public function generate() : Collection{
         $numOfTeams = $this->getNumberOfTeams();
-        $players = $this->players->sortByDesc('ranking');
-        $teams = array_map(fn($item) => collect([]), range(1, $numOfTeams));
+        $players    = $this->players->sortByDesc('ranking');
+        $teams      = array_map(fn($item) => collect([]), range(1, $numOfTeams));
         $currentlyAssigning = 0;
 
         // add in goalies up front to make sure everybody has one
         foreach($teams as $key=>$team){
-            $goalie = $players->first(fn($player) => $player['can_play_goalie']);
-            $teams[$key][] = $goalie;
+            $goalie         = $players->first(fn($player) => $player['can_play_goalie']);
+            $teams[$key][]  = $goalie;
             // remove taken goalie
             $players = $players->filter(fn($player)=> $player !== $goalie);
         }

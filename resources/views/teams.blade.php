@@ -1,16 +1,27 @@
-<link rel="stylesheet" href="{{ asset('css/app.css') }}">
-<script src="{{mix('js/app.js')}}"></script>
+<!-- Would normally put this head stuff in a layout but not for this simple project -->
+<head>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <script src="{{mix('js/app.js')}}"></script>
+    <title>Sports Recruits Teams</title>
+</head>
+
 <div id="app" class="p-10 bg-gray-600">
+
+    <!-- Header Section -->
     <div class="flex justify-between items-center text-white">
         <h1 style="font-size:2.5rem;">Teams <small class="font-thin">(@{{ teamsSorted.length }})</small></h1>
         <button class="bg-yellow-500 rounded py-1 px-3" @click="sortDesc = !sortDesc">Sort By Ranking @{{ sortDesc ? '↓' : '↑' }}</button>
     </div>
     <small class="text-white">* can play goalie</small>
+
+    <!-- Teams Charts -->
     <div class="flex flex-wrap gap-5 my-5">
         <div v-for="team in teamsSorted"
              class="w-1/5 flex-grow bg-white rounded shadow-lg overflow-hidden"
              style="min-width: 300px;"
         >
+
+            <!-- Team Chart Header -->
             <h2 class="text-xl bg-yellow-500 p-3 text-center text-white border-yellow-700 border-b-2">
                 <div
                     class="inline-block w-16 h-16 bg-white rounded-full text-gray-500 pt-4 border-yellow-600 border-2 mb-2"
@@ -20,8 +31,9 @@
                 <br>
                 <strong>@{{ team.name }}</strong>
             </h2>
-            <ul class="p-3">
 
+            <!-- Team Chart List of Players -->
+            <ul class="p-3">
                 <!-- Team Chart Headings -->
                 <li class="flex justify-between pb-5">
                     <strong>Player <br><small class="font-thin">(Total @{{ team.players.length }})</small></strong>
@@ -42,6 +54,8 @@
             </ul>
         </div>
     </div>
+
+    <!-- Footer -->
     <div class="pt-5 text-white">
         Total Players: @{{ totalPlayers }}
     </div>
