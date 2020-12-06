@@ -11,6 +11,11 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    public function scopePlayer($query)
+    {
+        return $query->where('user_type', 'player');
+    }
+
     /**
      * The attributes that are mass assignable.
      *

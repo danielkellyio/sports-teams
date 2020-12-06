@@ -13,7 +13,7 @@ class FairTeamGenerator{
     }
 
     public function addPlayers(Collection $players){
-        $this->players = $this->players->concat($players->toArray());
+        $this->players = $this->players->concat($players->toArray())->shuffle();
         return $this;
     }
 
