@@ -49,7 +49,7 @@ class FairTeamGenerator{
 
         $teams = collect($teams);
         $this->checkForErrors($teams);
-        return $teams;
+        return $teams->map(fn($team) => new Team($team));
     }
 
     private function getGoalies() : Collection{

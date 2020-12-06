@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Support\FairTeamGenerator;
-use Illuminate\Http\Request;
 
 class TeamsController extends Controller
 {

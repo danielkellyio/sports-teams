@@ -28,7 +28,7 @@ class PlayersIntegrityTest extends TestCase
         $teamGenerator = (new FairTeamGenerator())->addPlayers($players);
         $teams = $teamGenerator->generate();
         foreach($teams as $key => $team){
-            $hasGoalie = !empty($team->first(fn($player)=> $player['can_play_goalie'] === 1));
+            $hasGoalie = !empty($team->players->first(fn($player)=> $player['can_play_goalie'] === 1));
             self::assertTrue($hasGoalie);
         }
     }
@@ -50,8 +50,8 @@ class PlayersIntegrityTest extends TestCase
         $teamGenerator = (new FairTeamGenerator())->addPlayers($players);
         $teams = $teamGenerator->generate();
         foreach($teams as $key=>$team){
-            self::assertLessThan(23, $team->count());
-            self::assertGreaterThan(17, $team->count());
+            self::assertLessThan(23, $team->players->count());
+            self::assertGreaterThan(17, $team->players->count());
         }
     }
 
